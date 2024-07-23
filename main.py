@@ -1,6 +1,7 @@
 import argparse
 from plotting import plot_distance_matrix_upper_triangle, triangular_choronogram, spiral_chronogram
-from utils import create_final_df, aggregate
+from .utils import create_final_df
+from .utils import aggregate
 
 def main():
     parser = argparse.ArgumentParser(description="Generate chronograms and spiral chronograms.")
