@@ -1,5 +1,8 @@
+import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
+import math
 
 def plot_distance_matrix_upper_triangle(distance_matrix_path, dates_file_path, color):
     """
