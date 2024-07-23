@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from .utils import create_final_df
-from .utils import aggregate
 
 def plot_distance_matrix_upper_triangle(distance_matrix_path, dates_file_path, color):
     """
