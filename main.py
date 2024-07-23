@@ -11,12 +11,11 @@ def main():
   
     parser.add_argument('--plot_type', type=str, default='spiral', help='[triangular, spiral, upper_triangle]')
     parser.add_argument('--transform', action='store_true', help="Whether to apply log transformation to angles")
-    parser.add_argument('--aggregate_data', action='store_true', help="Whether to aggregate the data before plotting")
+    parser.add_argument('--aggregate_data', action='store_true', default = False, help="Whether to aggregate the data before plotting")
     parser.add_argument('--color', type=str, default='Spectral', help='Color map for the plot.')
     parser.add_argument('--pattern', type=str, default='nonoverlap', help='Pattern indicating overlap or nonoverlap.')
     parser.add_argument('--gap', type=int, default=100, help="Gap for the spiral")
     parser.add_argument('--threshold', type=int, default=1000, help="Threshold for the spiral")
-    parser.add_argument('--color_bar', type=str, default='Spectral_r', help="Color map for the chronograms")
     
     args = parser.parse_args()
     
@@ -27,7 +26,7 @@ def main():
       if (args.plot_type == 'triangular'):
             triangular_choronogram(df_plotting, args.color)
       elif (args.plot_type == 'spiral'):
-            spiral_chronogram(df_plotting, threshold = args.threshold, pattern = args.pattern, transform = args.transform, gap = args.gap, color = args.color)
+            spiral_chronogram(df_plotting, transform = args.transform, color = args.color, pattern = args.pattern, gap = args.gap, threshold = args.threshold)
     elif (args.plot_type == 'upper_triangle'):
         plot_distance_matrix_upper_triangle(args.distance_matrix_path, args.dates_file_path, color = args.color) 
     else:

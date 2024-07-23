@@ -18,6 +18,7 @@ def plot_distance_matrix_upper_triangle(distance_matrix_path, dates_file_path, c
     distance_df.columns = dates_df['Date']
     mask = np.triu(np.ones_like(distance_matrix))
     sns.heatmap(distance_df, mask=mask, cmap=color)
+    plt.savefig('upper_triangle.png')
     plt.show()
 
 def triangular_choronogram(df_plotting, color):
@@ -42,6 +43,8 @@ def triangular_choronogram(df_plotting, color):
 
     # Add a color bar to the plot to represent the Distance
     plt.colorbar(scatter_plot, label='Distance')
+
+    plt.savefig('triangular_chronogram.png')
 
     # Display the plot
     plt.show()
@@ -129,4 +132,6 @@ def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color):
     ax.set_frame_on(False)
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
+    plt.savefig('spiral_chronogram.png')
     plt.show()
+    
