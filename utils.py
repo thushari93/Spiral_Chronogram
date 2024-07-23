@@ -1,3 +1,6 @@
+import numpy as np
+import pandas as pd
+
 def create_lag_matrix(distance_matrix, dates_df):
     """
     Create a lag matrix from the distance matrix and dates.
