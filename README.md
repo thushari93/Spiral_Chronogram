@@ -6,4 +6,4 @@ To generate plots, run the following command,
 
 Example:
 
-`python main.py --distance_matrix_path 'distance_array_IL.npy' --dates_file_path  'Dates_IL.csv' --plot_type 'Triangular' aggregate_data = True, transform = True, threshold = 600, delta = 'D', tick_step = 365` 
+`python main.py --distance_matrix_path 'distance_array_IL.npy' --dates_file_path  'Dates_IL.csv' --plot_type 'Triangular' aggregate_data = True, transform = True, threshold = 600` 
