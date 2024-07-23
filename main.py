@@ -24,9 +24,9 @@ def main():
         df_plotting = create_final_df(args.distance_matrix_path, args.dates_file_path)
       if args.aggregate_data:
             df_plotting = aggregate(df_plotting)
-        if (args.plot_type == 'triangular'):
+      if (args.plot_type == 'triangular'):
             triangular_choronogram(df_plotting, args.color)
-         elif (args.plot_type == 'spiral'):
+      elif (args.plot_type == 'spiral'):
             spiral_chronogram(df_plotting, threshold = args.threshold, pattern = args.pattern, transform = args.transform, gap = args.gap, color = args.color)
     elif (args.plot_type == 'upper_triangle'):
         plot_distance_matrix_upper_triangle(args.distance_matrix_path, args.dates_file_path, color = args.color) 
