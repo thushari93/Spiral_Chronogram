@@ -1,13 +1,5 @@
 # Spiral_Chronogram
 
-Run the following command to generate the plot under default settings;
-
-`python main.py --distance_matrix_path <path> --dates_file_path  <path>` 
-
-Command to generate a customized plot;
-
-`python main.py --distance_matrix_path 'distance_array_IL.npy' --dates_file_path  'Dates_IL.csv' --plot_type 'spiral' --aggregate_data --transform --threshold 600` 
-
 # Chronogram Plotting Package
 
 This package provides a function to plot a chronogram (triangular or spiral) based on a distance matrix and corresponding dates. The main function, `plot_chronogram`, generates these plots with customizable parameters.
@@ -16,7 +8,7 @@ This package provides a function to plot a chronogram (triangular or spiral) bas
 
 ### Description
 
-The `plot_chronogram` function plots a chronogram (triangular or spiral) based on the provided distance matrix and dates.
+The `plot_chronogram`, `main.py`, function plots a chronogram (triangular or spiral) based on the provided distance matrix and dates.
 
 ### Parameters
 
@@ -34,19 +26,28 @@ The `plot_chronogram` function plots a chronogram (triangular or spiral) based o
 
 ### Example Usage
 
-```python
-plot_chronogram('distance_matrix.npy', 'dates.csv', 30, 'overlap', True, True, 1, 'Spectral', 'spiral', 'D', 100)
-```
+Run the following command to generate the plot under default settings;
+
+`python main.py --distance_matrix_path <path> --dates_file_path  <path>` 
+
+Command to generate a customized plot;
+
+`python main.py --distance_matrix_path 'distance_array_IL.npy' --dates_file_path  'Dates_IL.csv' --plot_type 'spiral' --aggregate_data --transform --threshold 600` 
+
 
 ## Installation
 
-1. Clone the repository: 
-    ```bash
-    git clone https://github.com/thushari93/Spiral_Chronogram.git 
-    cd Spiral_Chronogram 
-    ```
+1. Download the repository as a ZIP file from GitHub:
+https://github.com/thushari93/Spiral_Chronogram
 
-2. Install the necessary dependencies: 
+2. Extract the ZIP file.
+
+3. Navigate to the extracted folder:
+```bash
+cd <path-to-extracted-folder>
+```
+
+5. Install the necessary dependencies: 
     ```bash
     pip install -r requirements.txt
     ```
@@ -66,4 +67,4 @@ Feel free to submit issues to mho1@illinois.edu, fork the repository, and send p
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the Creative Commons License.
