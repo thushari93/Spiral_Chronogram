@@ -63,6 +63,9 @@ plot_chronogram('distance_matrix.npy', 'dates.csv')
 
 Feel free to submit issues to mho1@illinois.edu, fork the repository, and send pull requests!
 
+## Aknowledgement
+This project was funded by Institute for Mathematical and Statistical innovation (IMSI) and the University of Illinois at Urbana Champain (UIUC) under the supervision of Dr. Wilson and Dr. Ho.
+
 ## License
 
 This project is licensed under the Creative Commons License.
