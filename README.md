@@ -16,7 +16,7 @@ The `main.py` function plots a chronogram (triangular or spiral) based on the pr
 - `threshold` (int, default=1800): Threshold for the spiral.
 - `pattern` (str, default='nonoverlap'): Pattern indicating overlap or non-overlap.
 - `transform` (bool, default=False): Whether to apply log transformation to angles.
-- `aggregate_data` (bool, default=True): Whether to aggregate the data before plotting.
+- `aggregate_data` (bool, default=False): Whether to aggregate the data before plotting.
 - `gap` (int, default=100): Gap for the spiral.
 - `color` (str, default='Spectral'): Color map for the plot.
 - `plot_type` (str, default='spiral'): Type of chronogram to plot ('triangular', 'spiral', 'upper_triangle').
