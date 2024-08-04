@@ -4,7 +4,7 @@ import os
 import re
 import math
 
-def create_lag_matrix(distance_matrix, dates_df):
+def create_lag_matrix(distance_matrix, dates_df, date_type):
     """
     Create a lag matrix from the distance matrix and dates.
 
@@ -21,15 +21,31 @@ def create_lag_matrix(distance_matrix, dates_df):
 
     # Iterate over the dates in the Dates DataFrame
     dates = dates_df['Date'].to_list()
-    for i, date1 in enumerate(dates):
-        for j, date2 in enumerate(dates[:i]):
-            # Compute the lag (difference in days) between the dates
-            lag[i, j] = lag[j, i] = (date1 - date2).days
+
+    if date_type == 'D':
+        for i, date1 in enumerate(dates):
+            for j, date2 in enumerate(dates[:i]):
+                # Compute the lag (difference in days) between the dates
+                lag[i, j] = lag[j, i] = (date1 - date2).days
+    if date_type == 'M':
+        for i, date1 in enumerate(dates):
+            for j, date2 in enumerate(dates[:i]):
+                # Compute the lag (difference in months) between the dates
+                lag_days = (date1 - date2).days
+                lag_years = float(lag_days/365)
+                lag[i, j] = lag[j, i] = int((date1 - date2).days/365)*12 +int((lag_years - int(lag_years))*365/30)
+
+    if date_type == 'Y':
+        for i, date1 in enumerate(dates):
+            for j, date2 in enumerate(dates[:i]):
+                # Compute the lag (difference in years) between the dates
+                lag_days = (date1 - date2).days
+                lag[i, j] = lag[j, i] = int(lag_days/365)
 
     # Convert the lag matrix to integers and return it
     return lag.astype(int)
 
-def create_dates_matrix(dates_df):
+def create_dates_matrix(dates_df, date_type):
     """
     Create a dates matrix by tiling the dates.
 
@@ -39,7 +55,6 @@ def create_dates_matrix(dates_df):
     Returns:
     np.ndarray: Dates matrix.
     """
-    # Create a matrix by tiling the 'Date' column, repeating it to match the size of the Dates DataFrame
     return np.tile(dates_df['Date'], (len(dates_df), 1))
 
 
@@ -78,17 +93,24 @@ def check_date(file_name, expected_extensions=['.csv', '.txt', '.npy']):
     # Define the regex patterns for YYYY-MM-DD and YYYY-MM
     date_pattern_ymd = re.compile(r'\b\d{4}-\d{2}-\d{2}\b')
     date_pattern_ym = re.compile(r'\b\d{4}-\d{2}\b')
+    date_pattern_y = re.compile(r'\b\d{4}')
 
     def validate_and_convert_dates(series):
         try:
+            series_str = series.astype(str)
             # Check if the series matches the YYYY-MM-DD pattern
-            if series.astype(str).str.match(date_pattern_ymd).all():
-                return pd.to_datetime(series).dt.date
+            if series_str.astype(str).str.match(date_pattern_ymd).all():
+                return pd.to_datetime(series_str).dt.date
 
             # Check if the series matches the YYYY-MM pattern
-            if series.astype(str).str.match(date_pattern_ym).all():
+            if series_str.astype(str).str.match(date_pattern_ym).all():
                 # Convert to datetime and fill day with the first day of the month
-                return pd.to_datetime(series + '-01').dt.date
+                return pd.to_datetime(series_str + '-01').dt.date
+
+            # Check if the series matches the YYYY pattern
+            if series_str.astype(str).str.match(date_pattern_y).all():
+                # Convert to datetime and fill day with the first day of the month
+                return pd.to_datetime(series_str + '-01' + '-01').dt.date
 
             return None
         except Exception as e:
@@ -206,8 +228,6 @@ def check_and_load_files(distance_file_name, date_file_name):
     if date_file_extension.lower() in ['.csv', '.txt'] and distance_file_extension.lower() in ['.npy', '.csv', '.txt'] and check_date(date_file_name) is not None and check_distance(distance_file_name) is not None:
 
         dates_df =check_date(date_file_name)
-        # Rename the first column to 'Date' and convert to datetime.date format
-        dates_df = dates_df.rename(columns={dates_df.columns[0]: 'Date'})
         dates_df['Date'] = pd.to_datetime(dates_df['Date']).dt.date
 
         distance_matrix=check_distance(distance_file_name)
@@ -218,7 +238,7 @@ def check_and_load_files(distance_file_name, date_file_name):
 
 
 
-def create_final_df(distance_matrix_path, dates_file_path):
+def create_final_df(distance_matrix_path, dates_file_path, date_type):
     """
     Create the final DataFrame from the distance matrix and dates file.
 
@@ -230,8 +250,8 @@ def create_final_df(distance_matrix_path, dates_file_path):
     pd.DataFrame: Final DataFrame containing Date, Lag, and Dist columns.
     """
     dates_df, distance_matrix = check_and_load_files(distance_matrix_path, dates_file_path)
-    lag_matrix = create_lag_matrix(distance_matrix, dates_df)
-    dates_matrix = create_dates_matrix(dates_df)
+    lag_matrix = create_lag_matrix(distance_matrix, dates_df, date_type)
+    dates_matrix = create_dates_matrix(dates_df,date_type)
     upper_dates = extract_upper_triangle(dates_matrix)
     upper_lag = extract_upper_triangle(lag_matrix)
     upper_dist = extract_upper_triangle(distance_matrix)
