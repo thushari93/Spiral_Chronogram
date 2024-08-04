@@ -60,6 +60,10 @@ from chronogram import plot_chronogram
 
 plot_chronogram('distance_matrix.npy', 'dates.csv')
 ```
+
+## Example Plots 
+
+
 ## Contributing
 
 Feel free to submit issues to mho1@illinois.edu, fork the repository, and send pull requests!
