@@ -106,12 +106,12 @@ def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, ti
         df_plotting['Lag_first'] = (pd.to_datetime(df_plotting['Date']) - pd.to_datetime(df_plotting['Date']).min()).dt.days
         date_labels = pd.date_range(start=pd.to_datetime(df_plotting['Date']).min(), end=pd.to_datetime(df_plotting['Date']).max(), freq='D')
         date_labels = date_labels.strftime('%Y-%m-%d')
-
+    
     # transformed version - one full circle
     if transform == True:
         # create angle
         theta_values = (df_plotting['Lag_first'] / (df_plotting['Lag_first'].max()+1)) * 2 * np.pi
-        theta = np.log(np.abs(theta_values) + 1) * np.sign(theta_values)
+        theta = np.log(np.abs(theta_values) + 1) * np.sign(theta_values) 
         all_theta = (theta / (np.log(2*np.pi+1))) * 2 * np.pi
         # create radius
         all_r = df_plotting['Lag_first'] - df_plotting['Lag'] + gap
@@ -135,7 +135,7 @@ def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, ti
             df_to_save = df_plotting.loc[(df_plotting['Lag_first'] >= start_index) & (df_plotting['Lag_first'] <= end_index)].reset_index(drop=True)
             globals()[df_name] = df_to_save
             color_df = df_to_save['Dist'] # determine colors representing difference
-
+    
             # create angle
             Lag_first_diff = (df_to_save['Lag_first'] - threshold*i).astype(int)
             theta_values = (Lag_first_diff / threshold) * 2 * np.pi
@@ -154,7 +154,7 @@ def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, ti
                 scaled_sequence = normalized_sequence * gap
                 r_values += scaled_sequence[Lag_first_diff]
                 r_values += gap*i
-
+    
                 if i>0:
                     for itr in range(i):
                         j = i-itr
@@ -165,11 +165,11 @@ def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, ti
             all_theta.append(theta_values)
             all_r.append(r_values)
             all_color.append(color_df)
-
+    
         all_theta = np.concatenate(all_theta)
         all_r = np.concatenate(all_r)
         all_color = np.concatenate(all_color)
-
+    
     # show plot
     x = all_r * np.cos(all_theta)
     y = all_r * np.sin(all_theta)
@@ -177,12 +177,13 @@ def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, ti
     sc = plt.scatter(x, y, c=all_color, cmap='Spectral', s=2)  # Color by distance value
 
     # Add boundary line and highlight tick
-
+    
     if transform == True:
-        theta_boundary = np.arange(0, df_plotting['Lag_first'].max(), 1)/(df_plotting['Lag_first'].max()) * 2 * np.pi
-        theta_boundary_log = np.log(np.abs(theta_boundary) + 1) * np.sign(theta_boundary)
+        theta_boundary = np.arange(0, df_plotting['Lag_first'].max()+1, 1)/(df_plotting['Lag_first'].max()+1) * 2 * np.pi
+        theta_boundary_log = np.log(np.abs(theta_boundary) + 1) * np.sign(theta_boundary) 
         theta_boundary = (theta_boundary_log / (np.log(2*np.pi+1))) * 2 * np.pi
-        r_boundary = np.arange(0, df_plotting['Lag_first'].max(), 1) + 1 +gap
+        r_boundary = np.arange(0, df_plotting['Lag_first'].max()+1, 1) + 1 +gap
+        
     elif transform == False:
         # boundary angle
         theta_boundary = np.arange(0, threshold, 1)/threshold * 2 * np.pi
@@ -222,7 +223,7 @@ def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, ti
                         r_gap = radius_net + threshold * itr
                         r_boundary_add = r_boundary_add + r_gap
                 r_boundary = np.concatenate((r_boundary, r_boundary_add))
-
+    
     line_x = r_boundary * np.cos(theta_boundary)
     line_y = r_boundary * np.sin(theta_boundary)
     ax.plot(line_x, line_y, c='blue', linewidth=1)
@@ -279,12 +280,12 @@ def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color,
         df_plotting['Lag_first'] = (pd.to_datetime(df_plotting['Date']) - pd.to_datetime(df_plotting['Date']).min()).dt.days
         date_labels = pd.date_range(start=pd.to_datetime(df_plotting['Date']).min(), end=pd.to_datetime(df_plotting['Date']).max(), freq='D')
         date_labels = date_labels.strftime('%Y-%m-%d')
-
+    
     # transformed version - one full circle
     if transform == True:
         # create angle
         theta_values = (df_plotting['Lag_first'] / (df_plotting['Lag_first'].max()+1)) * 2 * np.pi
-        theta = np.log(np.abs(theta_values) + 1) * np.sign(theta_values)
+        theta = np.log(np.abs(theta_values) + 1) * np.sign(theta_values) 
         all_theta = (theta / (np.log(2*np.pi+1))) * 2 * np.pi
         # create radius
         all_r = df_plotting['Lag_first'] - df_plotting['Lag'] + gap
@@ -298,7 +299,7 @@ def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color,
         num_last = df_plotting['Lag_first'].max() + 1 - (num_circles-1)*threshold
         # determine colors representing difference
         #colors = df_plotting['Dist']
-
+    
         all_theta = []
         all_r = []
         all_z = []
@@ -315,10 +316,10 @@ def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color,
             Lag_first_diff = (df_to_save['Lag_first'] - threshold*i).astype(int)
             theta_values = (Lag_first_diff / threshold) * 2 * np.pi
             theta_values.reset_index(drop=True, inplace=True)
-
+    
             # create z dimension
             z_values = theta_values + np.pi * 2 * i
-
+    
             # create radius
             if pattern == 'overlap':
                 r_values = df_to_save['Lag_first'] - df_to_save['Lag'] + gap
@@ -333,7 +334,7 @@ def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color,
                 scaled_sequence = normalized_sequence * gap
                 r_values += scaled_sequence[Lag_first_diff]
                 r_values += gap*i
-
+    
                 if i>0:
                     for itr in range(i):
                         j = i-itr
@@ -345,12 +346,12 @@ def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color,
             all_r.append(r_values)
             all_z.append(z_values)
             all_color.append(color_df)
-
+    
         all_theta = np.concatenate(all_theta)
         all_r = np.concatenate(all_r)
         all_z = np.concatenate(all_z)
         all_color = np.concatenate(all_color)
-
+    
     # Data points text label
     hover_dates = df_plotting['Date'].astype(str).tolist()
     hover_lags = df_plotting['Lag'].astype(str).tolist()
@@ -358,21 +359,21 @@ def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color,
 
     # Boundary and highlight data
     if transform == True:
-        theta_boundary = np.arange(0, df_plotting['Lag_first'].max(), 1)/(df_plotting['Lag_first'].max()) * 2 * np.pi
-        theta_boundary_log = np.log(np.abs(theta_boundary) + 1) * np.sign(theta_boundary)
+        theta_boundary = np.arange(0, df_plotting['Lag_first'].max()+1, 1)/(df_plotting['Lag_first'].max()+1) * 2 * np.pi
+        theta_boundary_log = np.log(np.abs(theta_boundary) + 1) * np.sign(theta_boundary) 
         theta_boundary = (theta_boundary_log / (np.log(2*np.pi+1))) * 2 * np.pi
-        r_boundary = np.arange(0, df_plotting['Lag_first'].max(), 1) + 1 + gap
+        r_boundary = np.arange(0, df_plotting['Lag_first'].max()+1, 1) + 1 + gap
         z_boundary = theta_boundary
-    elif transform == False:
+    elif transform == False: 
         theta_boundary = np.arange(0, threshold, 1)/threshold * 2 * np.pi
         theta_boundary = np.tile(theta_boundary, (num_circles-1))
         theta_boundary = np.concatenate((theta_boundary, np.arange(0, num_last, 1)/threshold * 2 * np.pi))
-
+    
         z_boundary = theta_boundary
         if num_circles > 0:
             for i in range(num_circles-1):
                 z_boundary[threshold*(i+1):] += 2*np.pi
-
+    
         # boundary radius
         if pattern == 'overlap':
             r_boundary = np.array([])
