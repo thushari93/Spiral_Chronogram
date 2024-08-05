@@ -10,7 +10,7 @@ def main():
     parser.add_argument('--distance_matrix_path', type=str, help="Path to the distance matrix .npy file")
     parser.add_argument('--dates_file_path', type=str, help="Path to the dates .csv file")
   
-    parser.add_argument('--plot_type', type=str, default='spiral', help='[triangular, spiral, upper_triangle]')
+    parser.add_argument('--plot_type', type=str, default='spiral', help='[triangular, spiral, upper_triangle, spiral_3d]')
     parser.add_argument('--transform', action='store_true', help="Whether to apply log transformation to angles")
     parser.add_argument('--aggregate_data', action='store_true', help="Whether to aggregate the data before plotting")
     parser.add_argument('--color', type=str, default='Spectral', help='Color map for the plot.')
