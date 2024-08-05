@@ -51,15 +51,6 @@ cd <path-to-extracted-folder>
     pip install -r requirements.txt
     ```
 
-## Usage
-
-Import the `plot_chronogram` function and call it with the necessary parameters.
-
-```python
-from chronogram import plot_chronogram
-
-plot_chronogram('distance_matrix.npy', 'dates.csv')
-```
 
 ## Example Plots 
 
