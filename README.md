@@ -12,7 +12,7 @@ The `main.py` function plots a chronogram (triangular or spiral) based on the pr
 
 - `distance_matrix_path` (str): Path to the distance matrix file.
 - `dates_file_path` (str): Path to the dates file.
-- `date_type` (str, default ='D'): Lag difference between dates.
+- `date_type` (str, default ='D'): Lag difference between dates ('D', 'M', 'Y').
 - `threshold` (int, default=1800): Threshold for the spiral.
 - `pattern` (str, default='nonoverlap'): Pattern indicating overlap or non-overlap.
 - `transform` (bool, default=False): Whether to apply log transformation to angles.
