@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import plotly.graph_objects as go
 import math
 
-def plot_distance_matrix_upper_triangle(distance_matrix_path, dates_file_path, color, date_type):
+def plot_distance_matrix_upper_triangle(distance_matrix_path, dates_file_path, color, date_type, plot_title=None):
     """
     Plot the upper triangle of the distance matrix as a heatmap.
 
@@ -31,10 +31,15 @@ def plot_distance_matrix_upper_triangle(distance_matrix_path, dates_file_path, c
     ax.tick_params(top=True, labeltop=True, bottom=False, labelbottom=False)
     ax.xaxis.set_label_position('top')
     plt.xticks(rotation=90)
-    plt.savefig('upper_triangle.png')
+
+    # add title if provided 
+    if plot_title:
+        plt.savefig(f'upper_triangle_{plot_title}.png')
+    else:
+        plt.savefig('upper_triangle.png')
     plt.show()
 
-def triangular_choronogram(df_plotting, color, date_type):
+def triangular_choronogram(df_plotting, color, date_type, plot_title=None):
     """
     Plot a triangular chronogram.
 
@@ -66,13 +71,16 @@ def triangular_choronogram(df_plotting, color, date_type):
 
     # Add a color bar to the plot to represent the Distance
     plt.colorbar(scatter_plot, label='Distance')
-    
-    plt.savefig('triangular_chronogram.png')
 
+    # add title if provided 
+    if plot_title:
+        plt.savefig(f'triangular_chronogram_{plot_title}.png')
+    else:
+        plt.savefig('triangular_chronogram.png')
     # Display the plot
     plt.show()
 
-def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, tick_step, date_type):
+def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, tick_step, date_type, plot_title=None):
     """
     Plot a spiral chronogram.
 
@@ -245,10 +253,15 @@ def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, ti
     ax.set_frame_on(False)
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
-    plt.savefig('spiral_chronogram.png')
+
+    # add title if provided 
+    if plot_title:
+        plt.savefig(f'spiral_chronogram_{plot_title}.png')
+    else:
+        plt.savefig('spiral_chronogram.png')
     plt.show()
     
-def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color, tick_step, date_type):
+def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color, tick_step, date_type, plot_title=None):
     """
     Plot a spiral chronogram.
 
@@ -470,7 +483,12 @@ def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color,
     )
     # Save as html file
     plotly_fig = go.Figure(data=[plotly_data, boundary_line_data, plotly_highlight_data], layout=plotly_layout)
-    plotly_fig.write_html('interactive_3d_spiral_plot.html')
+    
+    # add title if provided 
+    if plot_title:
+        plotly_fig.write_html(f'interactive_3d_spiral_plot_{plot_title}.html')
+    else:
+        plotly_fig.write_html('interactive_3d_spiral_plot.html')
 
     # 2D plot process
     fig = plt.figure(figsize = (12,12))
@@ -532,5 +550,12 @@ def spiral_chronogram_3D(df_plotting, threshold, pattern, transform, gap, color,
     #ax.yaxis.set_visible(False)
     ax.view_init(elev=20, azim=30)
 
-    plt.savefig('static_3d_spiral_plot_wtick.png', dpi=300)
-    plt.show()
+    # add title if provided 
+    if plot_title:
+        plt.title(plot_title)
+        plt.savefig(f'static_3d_spiral_plot_wtick_{plot_title}.png', dpi=300)
+        plt.show()
+    else: 
+        plt.savefig('static_3d_spiral_plot_wtick.png', dpi=300)
+        plt.show()
+
