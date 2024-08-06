@@ -50,6 +50,8 @@ def triangular_choronogram(df_plotting, color, date_type):
     if date_type == 'Y':
         df_plotting["Date"] = df_plotting['Date'].dt.year
 
+    fig, scatter_plot = plt.subplots(figsize=(9, 7))
+
     # Create a scatter plot with Date on x-axis, Lag on y-axis, and Dist represented by color
     scatter_plot = plt.scatter(x=df_plotting["Date"], y=df_plotting["Lag"], s=1, c=df_plotting["Dist"], cmap=color)
 
