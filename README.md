@@ -5,9 +5,6 @@ Triangular Chronogram             |  Spiral Chronogram
 :-------------------------:|:-------------------------:
  ![](https://github.com/thushari93/Spiral_Chronogram/blob/3fe56bc07996cc98743c7742b45c9981e49d9fe8/Images/triangular_chronogram.png)| ![](https://github.com/thushari93/Spiral_Chronogram/blob/4fc7e6adb0327be84c9745a6b4c729330223cf88/Images/spiral_chronogram.png) 
 
-
-## Function: `main.py`
-
 ### Description
 
 The `main.py` function plots a chronogram (triangular or spiral) based on the provided distance matrix and dates.
