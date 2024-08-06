@@ -22,17 +22,6 @@ The `main.py` function plots a chronogram (triangular or spiral) based on the pr
 - `date_type` (str, default='D'): Unit of the dates ("D": days, "M": months, "Y": years).
 - `tick_step` (int, default=100): The increment of highlight tick.
 
-### Example Usage
-
-Command to generate the plot under default settings;
-
-`python main.py --distance_matrix_path <path> --dates_file_path  <path>` 
-
-Command to generate a customized plot;
-
-`python main.py --distance_matrix_path 'distance_array_IL.npy' --dates_file_path  'Dates_IL.csv' --plot_type 'spiral' --aggregate_data --transform --threshold 600` 
-
-
 ## Installation
 
 1. Download the repository as a ZIP file from GitHub:
@@ -49,7 +38,15 @@ cd <path-to-extracted-folder>
     ```bash
     pip install -r requirements.txt
     ```
-    
+### Example Usage
+
+Command to generate the plot under default settings;
+
+`python main.py --distance_matrix_path <path> --dates_file_path  <path>` 
+
+Command to generate a customized plot;
+
+`python main.py --distance_matrix_path 'distance_matrix_FL.npy' --dates_file_path  'Dates_FL.csv' --plot_type 'spiral' --aggregate_data --transform --threshold 600` 
 
 ## Example Plots 
 
