@@ -24,7 +24,7 @@ The `main.py` function plots a chronogram (triangular or spiral) based on the pr
 
 ### Example Usage
 
-Run the following command to generate the plot under default settings;
+Command to generate the plot under default settings;
 
 `python main.py --distance_matrix_path <path> --dates_file_path  <path>` 
 
