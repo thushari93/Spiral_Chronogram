@@ -49,7 +49,8 @@ python main.py --distance_matrix_path <path> --dates_file_path  <path>
 
 Command to generate a customized plot:
 ```bash
-python main.py --distance_matrix_path 'distance_matrix_FL.npy' --dates_file_path  'Dates_FL.csv' --plot_type 'spiral' --aggregate_data --transform --threshold 600 
+python main.py --distance_matrix_path 'distance_matrix_FL.npy' --dates_file_path  'Dates_FL.csv'
+--plot_type 'spiral' --aggregate_data --transform --threshold 600 
 ```
 
 ## Contributing
