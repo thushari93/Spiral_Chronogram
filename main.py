@@ -16,8 +16,6 @@ def main():
     parser.add_argument('--color', type=str, default='Spectral', help='Color map for the plot.')
     parser.add_argument('--pattern', type=str, default='nonoverlap', help='Pattern indicating overlap or nonoverlap.')
     parser.add_argument('--gap', type=int, default=100, help="Gap for the spiral")
-    parser.add_argument('--circle_coverage', type=int, default=0, help="Circle coverage for spiral chronogram")
-    parser.add_argument('--color_bar', type=str, default='Spectral', help="Color map for the chronograms")
     
     parser.add_argument('--tick_step', type=int, default=365, help="the stepsize of highlight dots (only useful in spiral)")
     parser.add_argument('--date_type', type=str, default='D', help="Type of date ('D', 'M', 'Y')")
