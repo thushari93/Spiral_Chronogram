@@ -34,6 +34,7 @@ def plot_distance_matrix_upper_triangle(distance_matrix_path, dates_file_path, c
 
     # add title if provided 
     if plot_title:
+        plt.title(plot_title)
         plt.savefig(f'upper_triangle_{plot_title}.png')
     else:
         plt.savefig('upper_triangle.png')
@@ -74,6 +75,7 @@ def triangular_choronogram(df_plotting, color, date_type, plot_title=None):
 
     # add title if provided 
     if plot_title:
+        plt.title(plot_title)
         plt.savefig(f'triangular_chronogram_{plot_title}.png')
     else:
         plt.savefig('triangular_chronogram.png')
@@ -256,6 +258,7 @@ def spiral_chronogram(df_plotting, threshold, pattern, transform, gap, color, ti
 
     # add title if provided 
     if plot_title:
+        plt.title(plot_title)
         plt.savefig(f'spiral_chronogram_{plot_title}.png')
     else:
         plt.savefig('spiral_chronogram.png')
