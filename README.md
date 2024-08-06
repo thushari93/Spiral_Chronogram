@@ -22,6 +22,7 @@ The `main.py` function plots a chronogram (triangular or spiral) based on the pr
 - `plot_type` (str, default='spiral'): Type of chronogram to plot ('triangular', 'spiral', 'upper_triangle', 'spiral_3d').
 - `date_type` (str, default='D'): Unit of the dates ("D": days, "M": months, "Y": years).
 - `tick_step` (int, default=100): The increment of highlight tick.
+- `plot_title` (str, default = None): The plot title.
 
 ## Installation
 
