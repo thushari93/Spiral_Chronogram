@@ -2,7 +2,7 @@
 
 This package provides a function to plot a chronogram (triangular or spiral) based on a distance matrix and corresponding dates. The main function, `plot_chronogram`, generates these plots with customizable parameters.
 
-![alt text](https://github.com/thushari93/Spiral_Chronogram/Images/spiral_chronogram.png)
+![alt text](https://github.com/thushari93/Spiral_Chronogram/blob/4fc7e6adb0327be84c9745a6b4c729330223cf88/Images/spiral_chronogram.png)
 
 ## Function: `main.py`
 
