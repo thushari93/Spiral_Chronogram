@@ -39,9 +39,9 @@ cd <path-to-extracted-folder>
 ```
 
 5. Install the necessary dependencies: 
-    ```bash
-    pip install -r requirements.txt
-    ```
+```bash
+pip install -r requirements.txt
+```
 ### Example Usage
 
 Command to generate the plot under default settings;
