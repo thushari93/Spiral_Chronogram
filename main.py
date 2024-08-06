@@ -20,6 +20,7 @@ def main():
     parser.add_argument('--tick_step', type=int, default=365, help="the stepsize of highlight dots (only useful in spiral)")
     parser.add_argument('--date_type', type=str, default='D', help="Type of date ('D', 'M', 'Y')")
     parser.add_argument('--threshold', type=int, default=1000, help="Threshold for the spiral")
+    parser.add_argument('--plot_title', type=str, default=None, help="Plot title")
 
     args = parser.parse_args()
     
@@ -28,15 +29,15 @@ def main():
             if args.aggregate_data:
                     df_plotting = aggregate(df_plotting)
             if (args.plot_type == 'triangular'):
-                    triangular_choronogram(df_plotting, args.color, args.date_type)
+                    triangular_choronogram(df_plotting, args.color, args.date_type, args.plot_title)
             elif (args.plot_type == 'spiral'):
-                    spiral_chronogram(df_plotting, args.threshold, args.pattern, args.transform, args.gap, args.color, args.tick_step, args.date_type)
+                    spiral_chronogram(df_plotting, args.threshold, args.pattern, args.transform, args.gap, args.color, args.tick_step, args.date_type, args.plot_title)
             elif (args.plot_type == 'spiral_3d'):
-                    spiral_chronogram_3D(df_plotting, args.threshold, args.pattern, args.transform,args.gap, args.color, args.tick_step,args.date_type)
+                    spiral_chronogram_3D(df_plotting, args.threshold, args.pattern, args.transform,args.gap, args.color, args.tick_step,args.date_type, args.plot_title)
     elif (args.plot_type == 'upper_triangle'):
-        plot_distance_matrix_upper_triangle(args.distance_matrix_path, args.dates_file_path, args.color, args.date_type) 
+        plot_distance_matrix_upper_triangle(args.distance_matrix_path, args.dates_file_path, args.color, args.date_type, args.plot_title) 
     else:
-        raise ValueError("Invalid plot type specified. Use 'triangular', 'spiral', or 'upper_triangle'.")
+        raise ValueError("Invalid plot type specified. Use 'triangular', 'spiral', or 'upper_triangle' or 'spiral_3d'.")
 
 if __name__ == "__main__":
     main()
