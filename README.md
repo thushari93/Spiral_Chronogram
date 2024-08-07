@@ -27,11 +27,12 @@ The `main.py` function plots a chronogram (triangular or spiral) based on the pr
 ## Installation
 
 1. Download the repository as a ZIP file from GitHub:
-https://github.com/thushari93/Spiral_Chronogram
+https://github.com/thushari93/Spiral_Chronogram .
+See how to do it here: https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives
 
-2. Extract the ZIP file.
+3. Extract the ZIP file.
 
-3. Navigate to the extracted folder:
+4. Navigate to the extracted folder:
 ```bash
 cd <path-to-extracted-folder>
 ```
