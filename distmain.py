@@ -1,6 +1,5 @@
 import argparse
-from plotting import plot_distance_matrix_upper_triangle, triangular_choronogram, spiral_chronogram, spiral_chronogram_3D
-from utils import create_final_df
+from distutils import create_final_df
 from utils import aggregate
 
 
