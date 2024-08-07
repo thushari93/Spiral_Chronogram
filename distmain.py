@@ -1,8 +1,8 @@
 import argparse
 import os
-from distutils import extract_dates_and_accessions
-from distutils import get_distance
-from distutils import calculate_distance_matrix
+from custom_utils import extract_dates_and_accessions
+from custom_utils import get_distance
+from custom_utils import calculate_distance_matrix
 
 def distmain():
     parser = argparse.ArgumentParser(description="Extract dates and accessions, and generate distance matrix.")
