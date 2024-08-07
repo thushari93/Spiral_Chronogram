@@ -45,7 +45,7 @@ pip install -r requirements.txt
 ## Example Usage
 Command to compute distance matrix and extract collection dates:
 ```bash
-python process_sequences.py --input_pattern "data_*.csv" --aligned_sequence_file "aligned_sequences.fasta"
+python distmain.py --input_pattern "data_*.csv" --aligned_sequence_file "aligned_sequences.fasta"
 ```
 
 Command to generate the plot under default settings:
