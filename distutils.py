@@ -22,12 +22,12 @@ def extract_dates_and_accessions(input_pattern, aligned_sequence_file):
     None
     """
     # Find all files matching the input pattern
-    files = glob.glob(input_pattern)
+files = glob.glob(input_pattern)
     
     # Create an empty list to store results
-    result_list = []
+result_list = []
     
-    for file in files:
+for file in files:
         # Read the CSV file
         df = pd.read_csv(file)
         
@@ -47,7 +47,7 @@ def extract_dates_and_accessions(input_pattern, aligned_sequence_file):
                 result_list.append(extracted_df)
     
     # Concatenate all non-empty DataFrames in the result list
-    if result_list:
+if result_list:
         result_df = pd.concat(result_list, ignore_index=True)
         
         # Sort the DataFrame by the 'Date' column
@@ -80,7 +80,7 @@ def extract_dates_and_accessions(input_pattern, aligned_sequence_file):
         #print(f"Dates saved to {output_date_file}")
        
         
-    else:
+else:
         print("No valid data to save.")
 
 def get_distance(x, y):
