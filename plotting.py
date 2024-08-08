@@ -4,6 +4,8 @@ import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import plotly.graph_objects as go
 import math
+from utils import check_and_load_files
+import seaborn as sns
 
 def plot_distance_matrix_upper_triangle(distance_matrix_path, dates_file_path, color, date_type, plot_title=None):
     """
@@ -26,7 +28,7 @@ def plot_distance_matrix_upper_triangle(distance_matrix_path, dates_file_path, c
         distance_df = pd.DataFrame(distance_matrix, index=dates_df['Date'].dt.year)
         distance_df.columns = dates_df['Date'].dt.year
     mask = np.tril(np.ones_like(distance_matrix))
-    fig, ax = plt.subplots(figsize=(9, 7))
+    fig, ax = plt.subplots(figsize=(11, 9))
     ax = sns.heatmap(distance_df, mask=mask, cmap=color)
     ax.tick_params(top=True, labeltop=True, bottom=False, labelbottom=False)
     ax.xaxis.set_label_position('top')
